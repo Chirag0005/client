@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@theme {
+  --color-ivory: #F7F7F2;
+  --color-ivory-warm: #FAF9F5;
+  --color-charcoal: #171717;
+  --color-charcoal-light: #222222;
+  --color-charcoal-surface: #1B1B1B;
+  --color-lime: #C7F36B;
+  --color-lime-glow: rgba(199, 243, 107, 0.4);
+  --color-sand: #EFEFE9;
+  --color-sand-border: #E2E2DA;
+  --color-muted: #6E6E68;
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F7F7F2;
+  color: #171717;
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+/* ARCHITECTURAL PATTERNS & BACKGROUNDS */
+.pattern-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(23, 23, 23, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 23, 23, 0.04) 1px, transparent 1px);
+}
+
+.pattern-dots {
+  background-image: radial-gradient(rgba(23, 23, 23, 0.09) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pattern-blueprint-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(199, 243, 107, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(199, 243, 107, 0.05) 1px, transparent 1px);
+}
+
+/* LUMINOUS GLOW & GLASSMORPHISM */
+.glow-lime {
+  box-shadow: 0 0 35px rgba(199, 243, 107, 0.3);
+}
+
+.glow-lime-sm {
+  box-shadow: 0 0 15px rgba(199, 243, 107, 0.35);
+}
+
+.glow-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-card-hover:hover {
+  box-shadow: 0 12px 35px -8px rgba(199, 243, 107, 0.25), 0 0 0 1px #171717;
+  transform: translateY(-2px);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(23, 23, 23, 0.08);
+}
+
+.glass-dark-card {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* SHIMMER & GRADIENT ACCENTS */
+.gradient-accent-text {
+  background: linear-gradient(135deg, #171717 15%, #55554e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-lime-text {
+  background: linear-gradient(135deg, #C7F36B 0%, #b8f244 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: rotate(30deg) translate(-100%, -100%);
+  transition: transform 0.6s ease;
+}
+.btn-shimmer:hover::after {
+  transform: rotate(30deg) translate(100%, 100%);
+}
+
+/* MARQUEE ANIMATION */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ROTATE SLOW ANIMATION */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 18s linear infinite;
+}
+
+/* FOCUS ACCESSIBILITY */
+:focus-visible {
+  outline: 2px solid #C7F36B !important;
+  outline-offset: 2px;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D5D5CA;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A6A698;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
